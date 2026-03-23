@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FBLA Leadership Study</title>
+  <style>
+    body { font-family: Arial; text-align: center; background: #f4f4f4; }
+    button { margin: 5px; padding: 10px; cursor: pointer; }
+    .hidden { display: none; }
+    #card { width: 300px; height: 150px; margin: 20px auto; border: 2px solid black; display:flex; align-items:center; justify-content:center; background:white; }
+  </style>
+</head>
+
+<body>
+
+<h1>FBLA Organizational Leadership Study</h1>
+
+<button onclick="show('flash')">Flashcards</button>
+<button onclick="show('test')">Test</button>
+<button onclick="show('weak')">Weakness</button>
+<button onclick="show('ai')">AI Tutor</button>
+
+<!-- FLASHCARDS -->
+<div id="flash">
+  <h2>Flashcards</h2>
+  <div id="card" onclick="flipCard()">Click</div>
+  <br>
+  <button onclick="mark(true)">✅ Knew</button>
+  <button onclick="mark(false)">❌ Missed</button>
+  <button onclick="nextCard()">Next</button>
+</div>
+
+<!-- TEST -->
+<div id="test" class="hidden">
+  <h2>Test</h2>
+  <div id="question"></div>
+  <div id="answers"></div>
+  <button onclick="nextQ()">Next</button>
+</div>
+
+<!-- WEAKNESS -->
+<div id="weak" class="hidden">
+  <h2>Weak Areas</h2>
+  <ul id="weakList"></ul>
+  <button onclick="trainWeak()">Train Me</button>
+</div>
+
+<!-- AI -->
+<div id="ai" class="hidden">
+  <h2>AI Tutor</h2>
+  <textarea id="aiInput" placeholder="Ask..."></textarea><br>
+  <button onclick="askAI()">Ask</button>
+  <div id="aiOut"></div>
+</div>
+
+<script>
+/* ================= DATA ================= */
+
+const flashcards = [
+  {q:"Leadership?",a:"Influencing others"},
+  {q:"Motivation?",a:"Drive to act"},
+  {q:"SWOT?",a:"Strengths Weaknesses Opportunities Threats"},
+  {q:"Delegation?",a:"Assigning tasks"},
+  {q:"Teamwork?",a:"Working together"}
+];
+
+const questions = [];
+
+for (let i=1;i<=100;i++){
+  questions.push({
+    q:`Question ${i}: What is a key leadership skill?`,
+    options:["Communication","Ignoring","Avoiding","Confusion"],
+    answer:0
+  });
+}
+
+/* =============== STATE =============== */
+
+let cardIndex=0, flipped=false;
+let qIndex=0;
+let weaknesses=JSON.parse(localStorage.getItem("weak"))||[];
+
+/* =============== NAV =============== */
+
+function show(id){
+  ["flash","test","weak","ai"].forEach(x=>{
+    document.getElementById(x).classList.add("hidden");
+  });
+  document.getElementById(id).classList.remove("hidden");
+
+  if(id==="weak") renderWeak();
+}
+
+/* =============== FLASHCARDS =============== */
+
+function loadCard(){
+  let c=flashcards[cardIndex];
+  document.getElementById("card").innerText=flipped?c.a:c.q;
+}
+
+function flipCard(){ flipped=!flipped; loadCard(); }
+
+function nextCard(){
+  cardIndex=(cardIndex+1)%flashcards.length;
+  flipped=false;
+  loadCard();
+}
+
+function mark(correct){
+  if(!correct){
+    weaknesses.push(flashcards[cardIndex].q);
+    localStorage.setItem("weak",JSON.stringify(weaknesses));
+  }
+  nextCard();
+}
+
+/* =============== TEST =============== */
+
+function loadQ(){
+  let q=questions[qIndex];
+  document.getElementById("question").innerText=q.q;
+
+  let div=document.getElementById("answers");
+  div.innerHTML="";
+
+  q.options.forEach((opt,i)=>{
+    let b=document.createElement("button");
+    b.innerText=opt;
+    b.onclick=()=>check(i);
+    div.appendChild(b);
+  });
+}
+
+function check(i){
+  if(i===questions[qIndex].answer){
+    alert("Correct");
+  } else {
+    alert("Wrong");
+    weaknesses.push(questions[qIndex].q);
+    localStorage.setItem("weak",JSON.stringify(weaknesses));
+  }
+}
+
+function nextQ(){
+  qIndex++;
+  if(qIndex>=questions.length){
+    alert("Finished!");
+    qIndex=0;
+  }
+  loadQ();
+}
+
+/* =============== WEAKNESS =============== */
+
+function renderWeak(){
+  let ul=document.getElementById("weakList");
+  ul.innerHTML="";
+  [...new Set(weaknesses)].forEach(w=>{
+    let li=document.createElement("li");
+    li.innerText=w;
+    ul.appendChild(li);
+  });
+}
+
+function trainWeak(){
+  if(weaknesses.length===0){
+    alert("No weaknesses!");
+    return;
+  }
+  let rand=weaknesses[Math.floor(Math.random()*weaknesses.length)];
+  alert("Review this: "+rand);
+}
+
+/* =============== AI (OPTIONAL) =============== */
+
+async function askAI(){
+  let input=document.getElementById("aiInput").value;
+  let out=document.getElementById("aiOut");
+  out.innerText="Thinking...";
+
+  try{
+    let res=await fetch("https://api.openai.com/v1/chat/completions",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json",
+        "Authorization":"Bearer YOUR_API_KEY"
+      },
+      body:JSON.stringify({
+        model:"gpt-4o-mini",
+        messages:[
+          {role:"system",content:"You are an FBLA tutor"},
+          {role:"user",content:input}
+        ]
+      })
+    });
+
+    let data=await res.json();
+    out.innerText=data.choices[0].message.content;
+  }catch{
+    out.innerText="AI error";
+  }
+}
+
+/* INIT */
+loadCard();
+loadQ();
+</script>
+
+</body>
+</html>
