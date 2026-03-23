@@ -63,16 +63,106 @@ const flashcards = [
   {q:"Teamwork?",a:"Working together"}
 ];
 
-const questions = [];
+const questions = [
+{q:"What is leadership?",options:["Influence","Control","Power","Authority"],answer:0},
+{q:"What is management?",options:["Planning organizing leading","Ignoring","Avoiding","Guessing"],answer:0},
+{q:"Which style is group-based?",options:["Autocratic","Democratic","Laissez-faire","Strict"],answer:1},
+{q:"Hands-off leadership?",options:["Autocratic","Democratic","Laissez-faire","Directive"],answer:2},
+{q:"Autocratic means?",options:["Group decision","Leader decides","No decision","Shared"],answer:1},
+{q:"Motivation is?",options:["Drive to act","Stopping","Avoiding","Confusion"],answer:0},
+{q:"Intrinsic motivation?",options:["Internal","External","Money","Punishment"],answer:0},
+{q:"Extrinsic motivation?",options:["Internal","External reward","Enjoyment","Passion"],answer:1},
+{q:"Maslow base level?",options:["Esteem","Safety","Physiological","Social"],answer:2},
+{q:"Maslow top?",options:["Esteem","Self-actualization","Safety","Love"],answer:1},
 
-for (let i=1;i<=100;i++){
-  questions.push({
-    q:`Question ${i}: What is a key leadership skill?`,
-    options:["Communication","Ignoring","Avoiding","Confusion"],
-    answer:0
-  });
-}
+{q:"SWOT S stands for?",options:["Strengths","Speed","System","Skill"],answer:0},
+{q:"SWOT W stands for?",options:["Work","Weaknesses","Worth","Will"],answer:1},
+{q:"SWOT O stands for?",options:["Options","Opportunities","Output","Order"],answer:1},
+{q:"SWOT T stands for?",options:["Threats","Time","Tasks","Tools"],answer:0},
+{q:"Delegation is?",options:["Assign tasks","Avoid work","Ignore","Lead"],answer:0},
+{q:"Accountability?",options:["Blame","Responsibility","Avoid","Ignore"],answer:1},
+{q:"Teamwork?",options:["Solo","Group work","Competition","Isolation"],answer:1},
+{q:"Communication?",options:["Sharing info","Ignoring","Talking only","Writing only"],answer:0},
+{q:"Nonverbal comm?",options:["Speaking","Body language","Emails","Calls"],answer:1},
+{q:"Active listening?",options:["Interrupt","Focus","Ignore","Talk"],answer:1},
 
+{q:"Conflict resolution?",options:["Solve issues","Avoid","Argue","Ignore"],answer:0},
+{q:"Ethics?",options:["Rules","Moral principles","Laws","Opinions"],answer:1},
+{q:"Integrity?",options:["Honesty","Lying","Avoid","Ignore"],answer:0},
+{q:"Productivity?",options:["Efficiency","Delay","Confusion","Waste"],answer:0},
+{q:"Time management?",options:["Plan time","Waste","Ignore","Rush"],answer:0},
+{q:"Vision statement?",options:["Future goal","Past","Rules","Money"],answer:0},
+{q:"Mission statement?",options:["Purpose","Future","Rules","Profit"],answer:0},
+{q:"Adaptability?",options:["Adjust","Resist","Ignore","Avoid"],answer:0},
+{q:"Innovation?",options:["New ideas","Copy","Old","Routine"],answer:0},
+{q:"Decision making?",options:["Choose","Ignore","Guess","Avoid"],answer:0},
+
+{q:"Emotional intelligence?",options:["Manage emotions","IQ","Speed","Strength"],answer:0},
+{q:"Empathy?",options:["Understand others","Ignore","Argue","Lead"],answer:0},
+{q:"Self-awareness?",options:["Know self","Ignore","Guess","Avoid"],answer:0},
+{q:"Self-regulation?",options:["Control emotions","Ignore","Explode","Avoid"],answer:0},
+{q:"Motivation EI?",options:["Drive","Ignore","Avoid","Delay"],answer:0},
+{q:"Social skills?",options:["Interact","Ignore","Avoid","Hide"],answer:0},
+{q:"Goal setting?",options:["Direction","Confusion","Delay","Ignore"],answer:0},
+{q:"SMART goals S?",options:["Specific","Simple","Strong","Small"],answer:0},
+{q:"SMART goals M?",options:["Measurable","Major","Medium","Minimal"],answer:0},
+{q:"SMART goals A?",options:["Achievable","Active","Average","Allowed"],answer:0},
+
+{q:"SMART goals R?",options:["Relevant","Random","Real","Right"],answer:0},
+{q:"SMART goals T?",options:["Time-bound","Timed","Tracked","True"],answer:0},
+{q:"Leadership trait theory?",options:["Traits","Behavior","Situational","None"],answer:0},
+{q:"Behavior theory?",options:["Actions","Traits","Situation","None"],answer:0},
+{q:"Situational leadership?",options:["Adapt","Rigid","Ignore","Avoid"],answer:0},
+{q:"Organizational culture?",options:["Values","Rules","Money","Tasks"],answer:0},
+{q:"Chain of command?",options:["Authority line","Team","Group","None"],answer:0},
+{q:"Centralization?",options:["Top control","Shared","None","Random"],answer:0},
+{q:"Decentralization?",options:["Shared power","Top","None","Strict"],answer:0},
+{q:"Span of control?",options:["# employees","Money","Time","Goals"],answer:0},
+
+{q:"Formal group?",options:["Official","Casual","Random","None"],answer:0},
+{q:"Informal group?",options:["Casual","Official","Strict","None"],answer:0},
+{q:"Conflict cause?",options:["Differences","Agreement","Clarity","Unity"],answer:0},
+{q:"Negotiation?",options:["Agreement","Fight","Ignore","Avoid"],answer:0},
+{q:"Win-win solution?",options:["Both benefit","One wins","Lose","None"],answer:0},
+{q:"Leadership skill?",options:["Communication","Ignoring","Avoiding","Confusion"],answer:0},
+{q:"Trust builds?",options:["Honesty","Lies","Ignore","Avoid"],answer:0},
+{q:"Feedback?",options:["Response","Ignore","Avoid","Delay"],answer:0},
+{q:"Coaching?",options:["Guide","Ignore","Avoid","Delay"],answer:0},
+{q:"Mentoring?",options:["Support","Ignore","Avoid","Delay"],answer:0},
+
+{q:"Job satisfaction?",options:["Happiness","Stress","Ignore","Avoid"],answer:0},
+{q:"Burnout?",options:["Exhaustion","Energy","Focus","Drive"],answer:0},
+{q:"Stress management?",options:["Control stress","Ignore","Avoid","Increase"],answer:0},
+{q:"Diversity?",options:["Differences","Same","Ignore","Avoid"],answer:0},
+{q:"Inclusion?",options:["Involve all","Exclude","Ignore","Avoid"],answer:0},
+{q:"Ethical leader?",options:["Honest","Dishonest","Lazy","Confused"],answer:0},
+{q:"Corporate responsibility?",options:["Ethical duty","Profit only","Ignore","Avoid"],answer:0},
+{q:"Benchmarking?",options:["Compare","Ignore","Avoid","Delay"],answer:0},
+{q:"KPI?",options:["Performance metric","Money","Time","Task"],answer:0},
+{q:"Product life cycle?",options:["Stages","None","Random","Ignore"],answer:0},
+
+{q:"Planning step?",options:["Set goals","Ignore","Avoid","Delay"],answer:0},
+{q:"Organizing step?",options:["Structure","Ignore","Avoid","Delay"],answer:0},
+{q:"Leading step?",options:["Motivate","Ignore","Avoid","Delay"],answer:0},
+{q:"Controlling step?",options:["Monitor","Ignore","Avoid","Delay"],answer:0},
+{q:"Authority?",options:["Power","None","Ignore","Avoid"],answer:0},
+{q:"Responsibility?",options:["Duty","Ignore","Avoid","Delay"],answer:0},
+{q:"Delegation risk?",options:["Loss control","None","Ignore","Avoid"],answer:0},
+{q:"Effective leader?",options:["Inspires","Confuses","Ignores","Avoids"],answer:0},
+{q:"Visionary leader?",options:["Future focus","Past","None","Ignore"],answer:0},
+{q:"Transactional leader?",options:["Rewards","Ignore","Avoid","Delay"],answer:0},
+
+{q:"Transformational leader?",options:["Inspires","Controls","Ignores","Avoids"],answer:0},
+{q:"Servant leader?",options:["Serves others","Self","Ignore","Avoid"],answer:0},
+{q:"Charisma?",options:["Charm","Ignore","Avoid","Delay"],answer:0},
+{q:"Power type?",options:["Legitimate","None","Ignore","Avoid"],answer:0},
+{q:"Expert power?",options:["Knowledge","None","Ignore","Avoid"],answer:0},
+{q:"Referent power?",options:["Respect","None","Ignore","Avoid"],answer:0},
+{q:"Reward power?",options:["Incentives","None","Ignore","Avoid"],answer:0},
+{q:"Coercive power?",options:["Punishment","None","Ignore","Avoid"],answer:0},
+{q:"Organizational goal?",options:["Objective","None","Ignore","Avoid"],answer:0},
+{q:"Efficiency?",options:["Less waste","More waste","Ignore","Avoid"],answer:0}
+];
 /* =============== STATE =============== */
 
 let cardIndex=0, flipped=false;
